@@ -1,0 +1,335 @@
+/* Cores do asfalto molhado e do letreiro de ônibus */
+:root {
+  --asfalto: #14212b;
+  --asfalto-claro: #213442;
+  --linha: #3b5364;
+  --texto: #e8f0f4;
+  --suave: #aebfca;
+  --letreiro: #ffb020;
+  --agua: #2a7fb8;
+  --perigo: #ff6b5b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--asfalto);
+  color: var(--texto);
+  font-family: Verdana, Tahoma, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  margin: 0 0 12px;
+  font-family: "Arial Black", Impact, sans-serif;
+  line-height: 1.15;
+}
+
+a {
+  color: var(--letreiro);
+}
+
+/* Chuva: uma faixa de riscos inclinados que se move sem parar */
+.chuva {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none; /* deixa o clique passar para os botões */
+  opacity: 0.2;
+  background-image: repeating-linear-gradient(105deg, transparent 0 12px, white 12px 13px, transparent 13px 42px);
+  background-size: 200px 200px;
+  animation: chover 0.5s linear infinite;
+}
+
+@keyframes chover {
+  to {
+    background-position: -54px 200px;
+  }
+}
+
+header,
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+.agua {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  z-index: -1;
+  background: var(--agua);
+  opacity: 0.45;
+  transition: height 0.8s;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: #0b1319;
+  border-bottom: 3px solid var(--letreiro);
+}
+
+.letreiro {
+  padding: 4px 12px;
+  background: black;
+  border-radius: 4px;
+  color: var(--letreiro);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+nav a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: var(--texto);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+nav a:hover {
+  background: var(--asfalto-claro);
+}
+
+nav a.ativo {
+  background: var(--letreiro);
+  color: black;
+}
+
+/* Capa */
+.capa {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 70px 20px;
+}
+
+.capa h1 {
+  font-size: clamp(2.2rem, 7vw, 4.2rem);
+}
+
+.capa p {
+  max-width: 60ch;
+  font-size: 1.1rem;
+}
+
+.hora {
+  margin: 0 0 8px;
+  color: var(--letreiro);
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: bold;
+}
+
+/* Partes usadas em todas as páginas */
+.bloco {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.secao {
+  margin-top: 40px;
+}
+
+.botao {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 13px 24px;
+  border: none;
+  border-radius: 8px;
+  background: var(--letreiro);
+  color: black;
+  font: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+}
+
+.botao-claro {
+  background: var(--asfalto-claro);
+  color: var(--texto);
+  border: 1px solid var(--linha);
+}
+
+.cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.cartao {
+  padding: 18px;
+  background: var(--asfalto-claro);
+  border-radius: 8px;
+  border-left: 5px solid var(--letreiro);
+}
+
+.cartao p {
+  margin: 0;
+  color: var(--suave);
+}
+
+.icone {
+  font-size: 2.2rem;
+}
+
+.aviso-regra {
+  font-weight: bold;
+  color: var(--letreiro);
+}
+
+/* Jogo */
+.jogo {
+  max-width: 760px;
+}
+
+.barras {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.barras label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.95rem;
+}
+
+progress {
+  width: 100%;
+  height: 14px;
+  accent-color: var(--letreiro);
+}
+
+.mudanca {
+  min-height: 1.6em;
+  margin: 12px 0;
+  color: var(--letreiro);
+  font-weight: bold;
+}
+
+.cena {
+  padding: 24px;
+  background: rgba(33, 52, 66, 0.95);
+  border-radius: 10px;
+  border-top: 5px solid var(--letreiro);
+}
+
+.cena h1 {
+  font-size: 1.5rem;
+}
+
+.opcoes {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.opcao {
+  padding: 14px 16px;
+  border: 2px solid var(--linha);
+  border-radius: 8px;
+  background: var(--asfalto);
+  color: var(--texto);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.opcao:hover {
+  border-color: var(--letreiro);
+  transform: translateX(4px);
+}
+
+.cena.ruim {
+  border-top-color: var(--perigo);
+}
+
+/* Meu Recife */
+.secao p {
+  margin: 0;
+}
+
+.credito {
+  color: var(--letreiro);
+  font-weight: bold;
+}
+
+.foto {
+  margin: 0;
+}
+
+.foto img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  border-radius: 8px;
+  object-fit: cover; /* corta a foto para preencher o espaço sem deformar */
+}
+
+.foto figcaption {
+  margin-top: 8px;
+  color: var(--suave);
+  font-size: 0.95rem;
+}
+
+.foto strong {
+  display: block;
+  color: var(--letreiro);
+  font-size: 1.1rem;
+}
+
+/* Finais */
+.bloqueado {
+  border-left-color: var(--linha);
+  opacity: 0.7;
+}
+
+footer {
+  padding: 20px;
+  background: #0b1319;
+  color: var(--suave);
+  text-align: center;
+}
+
+/* Telas pequenas */
+@media (max-width: 600px) {
+  header {
+    justify-content: center;
+  }
+
+  .capa {
+    padding: 40px 20px;
+  }
+
+  .barras {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
